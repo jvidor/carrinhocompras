@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCarrinhoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCarrinhoLabel_carrinhoPK_idcliente}" for="carrinhoPK_idcliente" />
+                    <h:inputText id="carrinhoPK_idcliente" value="#{carrinhoController.selected.carrinhoPK.idcliente}" title="#{bundle.EditCarrinhoTitle_carrinhoPK_idcliente}" required="true" requiredMessage="#{bundle.EditCarrinhoRequiredMessage_carrinhoPK_idcliente}"/>
+                    <h:outputLabel value="#{bundle.EditCarrinhoLabel_carrinhoPK_idcarrinho}" for="carrinhoPK_idcarrinho" />
+                    <h:inputText id="carrinhoPK_idcarrinho" value="#{carrinhoController.selected.carrinhoPK.idcarrinho}" title="#{bundle.EditCarrinhoTitle_carrinhoPK_idcarrinho}" required="true" requiredMessage="#{bundle.EditCarrinhoRequiredMessage_carrinhoPK_idcarrinho}"/>
+                    <h:outputLabel value="#{bundle.EditCarrinhoLabel_datetime}" for="datetime" />
+                    <h:inputText id="datetime" value="#{carrinhoController.selected.datetime}" title="#{bundle.EditCarrinhoTitle_datetime}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditCarrinhoLabel_pagamento}" for="pagamento" />
+                    <h:inputText id="pagamento" value="#{carrinhoController.selected.pagamento}" title="#{bundle.EditCarrinhoTitle_pagamento}" required="true" requiredMessage="#{bundle.EditCarrinhoRequiredMessage_pagamento}"/>
+                    <h:outputLabel value="#{bundle.EditCarrinhoLabel_clientes}" for="clientes" />
+                    <h:selectOneMenu id="clientes" value="#{carrinhoController.selected.clientes}" title="#{bundle.EditCarrinhoTitle_clientes}" required="true" requiredMessage="#{bundle.EditCarrinhoRequiredMessage_clientes}">
+                        <f:selectItems value="#{clientesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{carrinhoController.update}" value="#{bundle.EditCarrinhoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCarrinhoViewLink}"/>
+                <br />
+                <h:commandLink action="#{carrinhoController.prepareList}" value="#{bundle.EditCarrinhoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCarrinhoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

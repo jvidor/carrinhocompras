@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCarrinhoprodutosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCarrinhoprodutosEmpty}" rendered="#{carrinhoprodutosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{carrinhoprodutosController.items.rowCount > 0}">
+                    <h:outputText value="#{carrinhoprodutosController.pagination.pageFirstItem + 1}..#{carrinhoprodutosController.pagination.pageLastItem + 1}/#{carrinhoprodutosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{carrinhoprodutosController.previous}" value="#{bundle.Previous} #{carrinhoprodutosController.pagination.pageSize}" rendered="#{carrinhoprodutosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{carrinhoprodutosController.next}" value="#{bundle.Next} #{carrinhoprodutosController.pagination.pageSize}" rendered="#{carrinhoprodutosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{carrinhoprodutosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCarrinhoprodutosTitle_carrinhoprodutosPK_idproduto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.carrinhoprodutosPK.idproduto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCarrinhoprodutosTitle_idquantidade}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idquantidade}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCarrinhoprodutosTitle_carrinho}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.carrinho}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCarrinhoprodutosTitle_produtos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.produtos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{carrinhoprodutosController.prepareView}" value="#{bundle.ListCarrinhoprodutosViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{carrinhoprodutosController.prepareEdit}" value="#{bundle.ListCarrinhoprodutosEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{carrinhoprodutosController.destroy}" value="#{bundle.ListCarrinhoprodutosDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{carrinhoprodutosController.prepareCreate}" value="#{bundle.ListCarrinhoprodutosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCarrinhoprodutosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

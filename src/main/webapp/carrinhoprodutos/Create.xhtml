@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCarrinhoprodutosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCarrinhoprodutosLabel_carrinhoprodutosPK_idproduto}" for="carrinhoprodutosPK_idproduto" />
+                    <h:inputText id="carrinhoprodutosPK_idproduto" value="#{carrinhoprodutosController.selected.carrinhoprodutosPK.idproduto}" title="#{bundle.CreateCarrinhoprodutosTitle_carrinhoprodutosPK_idproduto}" required="true" requiredMessage="#{bundle.CreateCarrinhoprodutosRequiredMessage_carrinhoprodutosPK_idproduto}"/>
+                    <h:outputLabel value="#{bundle.CreateCarrinhoprodutosLabel_idquantidade}" for="idquantidade" />
+                    <h:inputText id="idquantidade" value="#{carrinhoprodutosController.selected.idquantidade}" title="#{bundle.CreateCarrinhoprodutosTitle_idquantidade}" required="true" requiredMessage="#{bundle.CreateCarrinhoprodutosRequiredMessage_idquantidade}"/>
+                    <h:outputLabel value="#{bundle.CreateCarrinhoprodutosLabel_carrinho}" for="carrinho" />
+                    <h:selectOneMenu id="carrinho" value="#{carrinhoprodutosController.selected.carrinho}" title="#{bundle.CreateCarrinhoprodutosTitle_carrinho}" required="true" requiredMessage="#{bundle.CreateCarrinhoprodutosRequiredMessage_carrinho}">
+                        <f:selectItems value="#{carrinhoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateCarrinhoprodutosLabel_produtos}" for="produtos" />
+                    <h:selectOneMenu id="produtos" value="#{carrinhoprodutosController.selected.produtos}" title="#{bundle.CreateCarrinhoprodutosTitle_produtos}" required="true" requiredMessage="#{bundle.CreateCarrinhoprodutosRequiredMessage_produtos}">
+                        <f:selectItems value="#{produtosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{carrinhoprodutosController.create}" value="#{bundle.CreateCarrinhoprodutosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{carrinhoprodutosController.prepareList}" value="#{bundle.CreateCarrinhoprodutosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCarrinhoprodutosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

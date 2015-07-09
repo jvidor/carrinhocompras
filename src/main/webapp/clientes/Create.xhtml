@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateClientesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateClientesLabel_idcliente}" for="idcliente" />
+                    <h:inputText id="idcliente" value="#{clientesController.selected.idcliente}" title="#{bundle.CreateClientesTitle_idcliente}" required="true" requiredMessage="#{bundle.CreateClientesRequiredMessage_idcliente}"/>
+                    <h:outputLabel value="#{bundle.CreateClientesLabel_nomecliente}" for="nomecliente" />
+                    <h:inputText id="nomecliente" value="#{clientesController.selected.nomecliente}" title="#{bundle.CreateClientesTitle_nomecliente}" />
+                    <h:outputLabel value="#{bundle.CreateClientesLabel_endereco}" for="endereco" />
+                    <h:inputText id="endereco" value="#{clientesController.selected.endereco}" title="#{bundle.CreateClientesTitle_endereco}" />
+                    <h:outputLabel value="#{bundle.CreateClientesLabel_cidade}" for="cidade" />
+                    <h:inputText id="cidade" value="#{clientesController.selected.cidade}" title="#{bundle.CreateClientesTitle_cidade}" />
+                    <h:outputLabel value="#{bundle.CreateClientesLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{clientesController.selected.estado}" title="#{bundle.CreateClientesTitle_estado}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{clientesController.create}" value="#{bundle.CreateClientesSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{clientesController.prepareList}" value="#{bundle.CreateClientesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateClientesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
